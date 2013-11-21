@@ -1,0 +1,51 @@
+﻿@model RegionViewModel
+@using Kingdom.Web.Models.Tile
+@using Kingdom.Web.Models.Region
+@using Kingdom.Core.Interfaces.Entities
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Layout = "_Layout.cshtml";
+}
+
+@{
+    int tileWidth = 100;
+    int tileHeight = 65;
+    
+    int regionWidth = Model.Tiles.GetLength(0) * tileWidth;
+    int regionHeight = Model.Tiles.GetLength(1) * tileHeight;
+
+    int offsetX = 0;
+    int offsetY = 0;
+
+    int zIndex = 1000;// 1000000 + region.Position.X - region.Position.Y;
+
+    var xLength = Model.Tiles.GetLength(0);
+    var yLength = Model.Tiles.GetLength(1);
+
+    
+    <div class="region" data-region-id="@Model.Id" data-x="@Model.X" data-y="@Model.Y">
+    @for (int i = 0; i < xLength; i++)
+    {
+        for (int j = 0; j < yLength;j ++)
+        {
+            TileViewModel tile = Model.Tiles[i, j];
+
+            int posX = i + Model.X * 10;
+            int posY = j + Model.Y * 10;
+
+            int x = posX * tileWidth / 2;
+            int y = posY * tileWidth / 2;
+
+
+            int isoX = (x - y) - (tileWidth / 2) + offsetX;// / 2;
+            int isoY = ((x + y) / 2) + offsetY;// / 2;
+                      
+            zIndex = 1000 + posX + posY;
+            
+	        <div data-region-id="@Model.Id" data-x="@i" data-y="@j" data-iso-x="@tile.IsoX" data-iso-y="@tile.IsoY" class="tile" style="z-index: @tile.ZIndex; position: absolute; top: @(tile.IsoY)px; left: @(tile.IsoX)px">
+                @{Html.RenderPartial(tile.Type, tile);}
+	        </div>
+        }
+    }
+    </div>
+}

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7F635349-BF08-4499-9823-84D6E044D423}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kingdom.Builders</RootNamespace>
+    <AssemblyName>Kingdom.Builders</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="StoneBuilder.cs" />
+    <Compile Include="GoldMineBuilder.cs" />
+    <Compile Include="ForestBuilder.cs" />
+    <Compile Include="Ioc\Bindings.cs" />
+    <Compile Include="RegionBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RiverBuilder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kingdom.Common\Kingdom.Common.csproj">
+      <Project>{e0b865e5-80f1-4454-ae37-e758a190181d}</Project>
+      <Name>Kingdom.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Core.Enums\Kingdom.Core.Enums.csproj">
+      <Project>{26576521-bc44-4cde-abb3-d1dd6c069075}</Project>
+      <Name>Kingdom.Core.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Core.Interfaces\Kingdom.Core.Interfaces.csproj">
+      <Project>{7c439401-c01a-45fb-9d62-c11a69ba8888}</Project>
+      <Name>Kingdom.Core.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Core\Kingdom.Core.csproj">
+      <Project>{37322d46-cff4-4dbd-b203-d89422d794f5}</Project>
+      <Name>Kingdom.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Entities\Kingdom.Entities.csproj">
+      <Project>{ef9a1996-f4f9-41ae-9486-93ca8e8523ff}</Project>
+      <Name>Kingdom.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

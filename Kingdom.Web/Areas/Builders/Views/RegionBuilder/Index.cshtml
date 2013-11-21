@@ -1,0 +1,34 @@
+﻿@model Kingdom.Web.Areas.Builders.Models.RegionBuilder.RegionBuilderViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Build Region</h2>
+
+<div>@ViewBag.RegionBuilt</div>
+
+@using (Html.BeginRouteForm(BuildersRoutes.BuildRegionSave, new { }, FormMethod.Post, new { }))
+{
+    <ul>
+        <li>
+            @Html.LabelFor(model => model.X)
+            @Html.TextBoxFor(model => model.X)
+            @Html.ValidationMessageFor(model => model.X)
+        </li>
+        
+        <li>
+            @Html.LabelFor(model => model.Y)
+            @Html.TextBoxFor(model => model.Y)
+            @Html.ValidationMessageFor(model => model.Y)
+        </li>
+        
+        <li>
+            @Html.LabelFor(model => model.Size)
+            @Html.TextBoxFor(model => model.Size)
+            @Html.ValidationMessageFor(model => model.Size)
+        </li>
+        <li>
+            <input type="submit" value="Create" />
+        </li>
+    </ul>
+}

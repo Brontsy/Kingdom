@@ -1,0 +1,9 @@
+﻿@model IList<RegionViewModel>
+@using Kingdom.Web.Models.Region
+
+
+
+@foreach (RegionViewModel region in Model)
+{
+    Html.RenderPartial("region", region);
+}

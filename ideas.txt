@@ -1,0 +1,5 @@
+-------------------------------
+	Buildings
+-------------------------------
+
+- House: More house - larger population increases recruitment speeds

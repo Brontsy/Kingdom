@@ -1,0 +1,348 @@
+﻿@model IList<RegionViewModel>
+@using Kingdom.Core.Interfaces.Entities
+@using Kingdom.Web.Models.Region
+@using Kingdom.Web.Models.Tile
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Layout = "_Layout.cshtml";
+}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="/content/scripts/game.world.js"></script>
+
+@{
+    int tileWidth = 100;
+    int tileHeight = 65;
+}
+
+<style>
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+    body, html { padding: 0px; margin: 0px; overflow: hidden; }
+    .tile { width: @(tileWidth)px; height: @(tileHeight)px; float: left; }
+    .forest {  }
+    .gold { background: gold; }
+    .desert { background: yellow; }
+    .water { background: blue; }
+    .stone { background: grey; }
+    .grass { background: green; }
+
+    .tile {}
+    .tile .water { background: url(/Content/Images/Tiles/svg/water.svg) no-repeat; width: @(tileWidth)px; height: @(tileHeight)px;  }
+    .tile .water.east-west { background: url(/Content/Images/Tiles/riverEW.png) no-repeat; }
+    .tile .water.north-south { background: url(/Content/Images/Tiles/riverNS.png) no-repeat; }
+    .tile .water.east-corner { background: url(/Content/Images/Tiles/riverES.png) no-repeat; }
+    .tile .water.south-corner { background: url(/Content/Images/Tiles/riverNE.png) no-repeat; }
+    .tile .water.north-corner { background: url(/Content/Images/Tiles/riverSW.png) no-repeat; }
+    .tile .water.west-corner { background: url(/Content/Images/Tiles/riverNW.png) no-repeat; }
+    .tile .grass { background: url(/Content/Images/Tiles/svg/grass.svg) no-repeat; width: @(tileWidth)px; height: @(tileHeight)px;  }
+    .tile .gold { background: url(/Content/Images/Tiles/svg/gold-mine.svg) no-repeat; width: @(tileWidth)px; height: @(tileHeight)px;  }
+    .tile .stone { background: url(/Content/Images/Tiles/svg/stone.svg) no-repeat; width: @(tileWidth)px; height: @(tileHeight)px;  }
+    .tile .tree01 { background: url(/Content/Images/Tiles/coniferTall.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 70px; position: absolute;  }
+    .tile .tree02 { background: url(/Content/Images/Tiles/coniferTall.png) no-repeat; width: 19px; height: 48px; margin: -35px 0px 0px 37px; position: absolute;  }
+    .tile .tree03 { background: url(/Content/Images/Tiles/coniferTall.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 12px; position: absolute;  }
+    .tile .tree04 { background: url(/Content/Images/Tiles/coniferShort.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 22px; position: absolute;  }
+    .tile .tree05 { background: url(/Content/Images/Tiles/coniferShort.png) no-repeat; width: 19px; height: 48px; margin: -5px 0px 0px 50px; position: absolute;  }
+    .tile .tree06 { background: url(/Content/Images/Tiles/coniferShort.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 60px; position: absolute;  }
+    .tile .tree07 { background: url(/Content/Images/Tiles/coniferAltTall.png) no-repeat; width: 19px; height: 48px; margin: -6px 0px 0px 32px; position: absolute;  }
+    .tile .tree08 { background: url(/Content/Images/Tiles/coniferAltTall.png) no-repeat; width: 19px; height: 48px; margin: -18px 0px 0px 22px; z-index: 10; position: absolute;  }
+    .tile .tree09 { background: url(/Content/Images/Tiles/coniferAltTall.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 12px; position: absolute;  }
+    .tile .tree10 { background: url(/Content/Images/Tiles/coniferAltShort.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 12px; position: absolute;  }
+    .tile .tree11 { background: url(/Content/Images/Tiles/coniferAltShort.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 12px; position: absolute;  }
+    .tile .tree12 { background: url(/Content/Images/Tiles/coniferAltShort.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 12px; position: absolute;  }
+
+
+    .menu { position: absolute; top: 0px; right: 0px; width: 100px; border-left: 1px solid #111111; }
+
+</style>
+
+
+<div class="drag game-world">
+
+    @{Html.RenderPartial("regions", Model);}
+
+</div>
+
+<div style="background: #ffffff; border: 1px solid #666666; position: absolute; top: 0px; left: 0px; width: 150px; height: 40px; z-index: 99999; line-height: 40px; padding: 0px 10px 0px 10px;" class="updatetl"></div>
+<div style="background: #ffffff; border: 1px solid #666666; position: absolute; top: 0px; right: 0px; width: 150px; height: 40px; z-index: 99999; line-height: 40px; padding: 0px 10px 0px 10px;" class="updatetr"></div>
+<div style="background: #ffffff; border: 1px solid #666666; position: absolute; bottom: 0px; left: 0px; width: 150px; height: 40px; z-index: 99999; line-height: 40px; padding: 0px 10px 0px 10px;" class="updatebl"></div>
+<div style="background: #ffffff; border: 1px solid #666666; position: absolute; bottom: 0px; right: 0px; width: 150px; height: 40px; z-index: 99999; line-height: 40px; padding: 0px 10px 0px 10px;" class="updatebr"></div>
+<div style="background: #ffffff; border: 1px solid #666666; position: absolute; bottom: 0px; right: 45%; width: 400px; height: 40px; z-index: 99999; line-height: 40px; padding: 0px 10px 0px 10px;" class="update-click"></div>
+
+
+<script>
+
+
+    $('.game-world').gameWorld({});
+
+@*
+    var offsetX = -500;
+    var offsetY = -200;
+
+    function getTileCoordinates(position)
+    {
+        var tilPos = {};
+        tilPos.x = Math.floor(position.x / 50);
+        tilPos.y = Math.floor(position.y / 50);
+        return tilPos;
+    }
+
+    function isoTo2D(x, y)
+    {
+        x += offsetX;
+        y += offsetY;
+
+        var dPos = {};
+        dPos.x =((2 * y + x) / 2);// - offsetX;
+        dPos.y = ((2 * y - x) / 2);// - offsetY;
+        return dPos;
+
+    }
+
+
+
+    function isoToScreen(x, y) {
+        var posX = (x - y) * 100;
+        var posY = (x + y) * 100 / 2;
+
+        return { x: posX, y: posY };
+    };
+
+    function Create2DArray(rows) {
+        var arr = [];
+
+        for (var i = 0; i < rows; i++) {
+            arr[i] = [];
+        }
+
+        return arr;
+    }
+
+    var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
+
+    $('.update').html($('[data-border="true"]').length);
+
+    var borders = $('[data-border="true"]');
+
+    var regionsDone = new Array();
+
+    @foreach(var region in Model)
+    {
+        <text>regionsDone.push({ x: @region.X, y: @region.Y })</text>
+    }
+
+    var regionIdsDone = new Array();
+    @foreach(var region in Model)
+    {
+        <text>regionIdsDone.push(@region.Id)</text>
+    }
+
+    $('.region > div').on('click', function(event) {
+
+        var testPos = getTileCoordinates(isoTo2D(event.pageX, event.pageY));
+        $('.update').html(testPos.x + ' : ' + testPos.y);
+
+        //var newPos = isoToScreen(event.pageX, event.pageY);
+        //alert(newPos.x + ' : ' + newPos.y);
+
+    });
+
+    $('.drag').draggable({
+
+        drag: function () {
+
+        },
+        stop: function (event, ui) {
+
+            var topRightX = windowWidth + ui.position.left * -1;
+
+            var rightSide = topRightX - 50;
+
+
+            var topRightY = ui.position.top * -1;
+
+            var topLeftX = ui.position.left * -1;
+            var topLeftY = ui.position.top * -1;
+
+            var bottomLeftX = topLeftX;
+            var bottomLeftY = topLeftY + windowHeight;
+
+            var bottomRightX = topRightX
+            var bottomRightY = topRightY + windowHeight
+
+            offsetX = ui.position.left * -1 - 500;
+            offsetY = ui.position.top * -1 - 200;
+
+            $.each(borders, function (index, element) {
+
+                var x = $(element).data('iso-x');
+                var y = $(element).data('iso-y');
+
+                if (x > (ui.position.left * -1) && x < ui.position.left * -1 + windowWidth) {
+
+                    if (y > ui.position.top * -1 && y < ui.position.top * -1 + windowHeight)
+                    {
+                        var regionId = $(element).parent().data('region-id');
+
+                        var regionIdDone = false;
+                        
+                        $.each(regionIdsDone, function (index, regionIdTest) {
+                            if(regionIdTest == regionId)
+                            {
+                                //regionIdDone = true;
+                            }
+                        });
+
+                        if(!regionIdDone)
+                        {
+                            regionIdsDone.push(regionId);
+
+                            var posX = parseInt($(element).parent().data('x'));
+                            var posY = parseInt($(element).parent().data('y'));
+
+                            var neighbours = new Array();
+                            neighbours.push({ x: posX - 1, y: posY - 1 });
+                            neighbours.push({ x: posX, y: posY - 1 });
+                            neighbours.push({ x: posX, y: posY + 1 });
+                            neighbours.push({ x: posX + 1, y: posY });
+                            neighbours.push({ x: posX + 1, y: posY + 1 });
+                            neighbours.push({ x: posX, y: posY + 1 });
+                            neighbours.push({ x: posX - 1, y: posY + 1 });
+                            neighbours.push({ x: posX - 1, y: posY });
+
+                            $.each(neighbours, function (index, neighbour) {
+                            
+                                var done = false;
+                                if(neighbour.x >= 0 && neighbour.y >= 0)
+                                {
+                                    $.each(regionsDone, function (index, region) {
+                                        //alert(region.x + ' ' + neighbour.x + ' : ' + region.y +' '+ neighbour.y);
+                                        if (region.x == neighbour.x && region.y == neighbour.y) {
+                                            done = true;
+                                        }
+                                    });
+
+                                    if (!done) {
+
+                                        $.ajax({
+                                            url: '/region/get/' + neighbour.x + '-' + neighbour.y,
+                                            method: 'GET',
+                                            success: function (response) {
+                                                $(response).appendTo($('.drag'));
+                                                
+                                                borders = $('[data-border="true"]');
+                                                $('.update').html(borders.length);
+                                            }
+                                        });
+
+                                        regionsDone.push({x: neighbour.x, y: neighbour.y});
+                                    }
+                                }
+                            });
+                        }
+                        //$('.update').html('done: ' + regionId);
+                    }
+                }
+            });
+            
+            //$('.update').html('Top left:' + topLeftX + ',' + topLeftY + ' Top right:' + topRightX + ',' + topRightY + ' Bottom left:' + bottomLeftX + ',' + bottomLeftY + ' Bottom right:' + bottomRightX + ',' + bottomRightY);
+
+            //var x = 1450;
+            //var y = -725;
+
+            //var top = 734;
+            //var left = 0;
+
+            //if (windowWidth + (ui.position.left * -1) > 1450) {
+
+            //    if (ui.position.top * -1 < -725) {
+
+
+            //        $.ajax({
+
+            //            url: '/region/get/0-3',
+            //            method: 'GET',
+            //            success: function (response) {
+            //                $(response).appendTo($('.drag'));
+            //            }
+            //        });
+            //    }
+            //}
+
+
+
+            //$.ajax({
+
+            //    url: '/region/get/0-4',
+            //    method: 'GET',
+            //    success: function (response) {
+            //        $(response).appendTo($('.drag'));
+            //    }
+            //});
+            //$.ajax({
+
+            //    url: '/region/get/1-3',
+            //    method: 'GET',
+            //    success: function (response) {
+            //        $(response).appendTo($('.drag'));
+            //    }
+            //});
+        }
+    });
+
+    var selectedTile;
+
+    var tiles = new Array();
+
+    $('.tile').on('click', function (event) {
+       
+        selectedTile = $(this);
+
+        if (!event.ctrlKey)
+        {
+            tiles = new Array();
+
+            $.each($('.selected'), function (index, element) {
+
+                //$(this).css({ 'top': (parseInt($(this).css('top')) - 15) + 'px' });
+                $(this).removeClass('selected');
+            });
+        }
+
+        tiles.push($(this));
+
+        if (!$(this).hasClass('selected')) {
+            $(this).addClass('selected');
+            var top = $(this).css('top');
+
+            //$(this).css({ 'top': (parseInt(top) + 15) + 'px' });
+        }
+
+    });
+
+
+
+
+    $('.menu a').on('click', function (event) {
+
+        event.preventDefault();
+        var type = $(this);
+        $.each(tiles, function (index, tile)
+        {
+            var x = $(tile).data('x');
+            var y = $(tile).data('y');
+            var regionId = 1;
+
+            $.ajax({
+
+                url: $(type).attr('href') + '?regionId=' + regionId + '&x=' + x + '&y=' + y,
+                method: 'POST',
+                success: function (response) {
+                }
+            });
+        });
+
+    });*@
+
+</script>

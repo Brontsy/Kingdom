@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C4D5C80A-1670-4330-A76F-0DD96249D2E8}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kingdom.Web</RootNamespace>
+    <AssemblyName>Kingdom.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.2-unstable-9037\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.0.2-unstable-9012\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.3.0.2-unstable-9010\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Areas\Builders\BuildersAreaRegistration.cs" />
+    <Compile Include="Areas\Builders\Controllers\RegionBuilderController.cs" />
+    <Compile Include="Areas\Builders\Models\RegionBuilder\RegionBuilderViewModel.cs" />
+    <Compile Include="Controllers\BuildingController.cs" />
+    <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\TileController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Position\PositionViewModel.cs" />
+    <Compile Include="Models\Region\RegionViewModel.cs" />
+    <Compile Include="Models\Tile\TileViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Images\Tiles\beach.png" />
+    <Content Include="Content\Images\Tiles\beachCornerES.png" />
+    <Content Include="Content\Images\Tiles\beachCornerNE.png" />
+    <Content Include="Content\Images\Tiles\beachCornerNW.png" />
+    <Content Include="Content\Images\Tiles\beachCornerSW.png" />
+    <Content Include="Content\Images\Tiles\beachE.png" />
+    <Content Include="Content\Images\Tiles\beachES.png" />
+    <Content Include="Content\Images\Tiles\beachN.png" />
+    <Content Include="Content\Images\Tiles\beachNE.png" />
+    <Content Include="Content\Images\Tiles\beachNW.png" />
+    <Content Include="Content\Images\Tiles\beachS.png" />
+    <Content Include="Content\Images\Tiles\beachSW.png" />
+    <Content Include="Content\Images\Tiles\beachW.png" />
+    <Content Include="Content\Images\Tiles\bridgeEast.png" />
+    <Content Include="Content\Images\Tiles\bridgeEW.png" />
+    <Content Include="Content\Images\Tiles\bridgeNorth.png" />
+    <Content Include="Content\Images\Tiles\bridgeNS.png" />
+    <Content Include="Content\Images\Tiles\coniferAltShort.png" />
+    <Content Include="Content\Images\Tiles\coniferAltTall.png" />
+    <Content Include="Content\Images\Tiles\coniferShort.png" />
+    <Content Include="Content\Images\Tiles\coniferTall.png" />
+    <Content Include="Content\Images\Tiles\crossroad.png" />
+    <Content Include="Content\Images\Tiles\crossroadESW.png" />
+    <Content Include="Content\Images\Tiles\crossroadNES.png" />
+    <Content Include="Content\Images\Tiles\crossroadNEW.png" />
+    <Content Include="Content\Images\Tiles\crossroadNSW.png" />
+    <Content Include="Content\Images\Tiles\dirt.png" />
+    <Content Include="Content\Images\Tiles\dirtDouble.png" />
+    <Content Include="Content\Images\Tiles\dirtHigh.png" />
+    <Content Include="Content\Images\Tiles\endE.png" />
+    <Content Include="Content\Images\Tiles\endN.png" />
+    <Content Include="Content\Images\Tiles\endS.png" />
+    <Content Include="Content\Images\Tiles\endW.png" />
+    <Content Include="Content\Images\Tiles\exitE.png" />
+    <Content Include="Content\Images\Tiles\exitN.png" />
+    <Content Include="Content\Images\Tiles\exitS.png" />
+    <Content Include="Content\Images\Tiles\exitW.png" />
+    <Content Include="Content\Images\Tiles\g3331.png" />
+    <Content Include="Content\Images\Tiles\gold-mine-200.png" />
+    <Content Include="Content\Images\Tiles\gold-mine.jpg" />
+    <Content Include="Content\Images\Tiles\gold-mine.png" />
+    <Content Include="Content\Images\Tiles\gold-mine02.png" />
+    <Content Include="Content\Images\Tiles\gold-mine02.svg" />
+    <Content Include="Content\Images\Tiles\gold-mine03.png" />
+    <Content Include="Content\Images\Tiles\grass-200.png" />
+    <Content Include="Content\Images\Tiles\grass.png" />
+    <Content Include="Content\Images\Tiles\grass02.png" />
+    <Content Include="Content\Images\Tiles\grassWhole.png" />
+    <Content Include="Content\Images\Tiles\hillCornerEast.png" />
+    <Content Include="Content\Images\Tiles\hillCornerNW.png" />
+    <Content Include="Content\Images\Tiles\hillCornerSE.png" />
+    <Content Include="Content\Images\Tiles\hillCornerWest.png" />
+    <Content Include="Content\Images\Tiles\hillE.png" />
+    <Content Include="Content\Images\Tiles\hillEast.png" />
+    <Content Include="Content\Images\Tiles\hillES.png" />
+    <Content Include="Content\Images\Tiles\hillN.png" />
+    <Content Include="Content\Images\Tiles\hillNE.png" />
+    <Content Include="Content\Images\Tiles\hillNorth.png" />
+    <Content Include="Content\Images\Tiles\hillNW.png" />
+    <Content Include="Content\Images\Tiles\hillRoadEast.png" />
+    <Content Include="Content\Images\Tiles\hillRoadNorth.png" />
+    <Content Include="Content\Images\Tiles\hillRoadSouth.png" />
+    <Content Include="Content\Images\Tiles\hillRoadWest.png" />
+    <Content Include="Content\Images\Tiles\hillS.png" />
+    <Content Include="Content\Images\Tiles\hillSouth.png" />
+    <Content Include="Content\Images\Tiles\hillSW.png" />
+    <Content Include="Content\Images\Tiles\hillW.png" />
+    <Content Include="Content\Images\Tiles\hillWest.png" />
+    <Content Include="Content\Images\Tiles\lot.png" />
+    <Content Include="Content\Images\Tiles\lotCornerEast.png" />
+    <Content Include="Content\Images\Tiles\lotCornerNorth.png" />
+    <Content Include="Content\Images\Tiles\lotCornerSouth.png" />
+    <Content Include="Content\Images\Tiles\lotCornerWest.png" />
+    <Content Include="Content\Images\Tiles\lotE.png" />
+    <Content Include="Content\Images\Tiles\lotEast.png" />
+    <Content Include="Content\Images\Tiles\lotES.png" />
+    <Content Include="Content\Images\Tiles\lotExitEast.png" />
+    <Content Include="Content\Images\Tiles\lotExitNorth.png" />
+    <Content Include="Content\Images\Tiles\lotExitSouth.png" />
+    <Content Include="Content\Images\Tiles\lotExitWest.png" />
+    <Content Include="Content\Images\Tiles\lotN.png" />
+    <Content Include="Content\Images\Tiles\lotNE.png" />
+    <Content Include="Content\Images\Tiles\lotNorth.png" />
+    <Content Include="Content\Images\Tiles\lotNW.png" />
+    <Content Include="Content\Images\Tiles\lotPark.png" />
+    <Content Include="Content\Images\Tiles\lotS.png" />
+    <Content Include="Content\Images\Tiles\lotSouth.png" />
+    <Content Include="Content\Images\Tiles\lotSW.png" />
+    <Content Include="Content\Images\Tiles\lotW.png" />
+    <Content Include="Content\Images\Tiles\lotWest.png" />
+    <Content Include="Content\Images\Tiles\path8272.png" />
+    <Content Include="Content\Images\Tiles\riverBankedES.png" />
+    <Content Include="Content\Images\Tiles\riverBankedEW.png" />
+    <Content Include="Content\Images\Tiles\riverBankedNE.png" />
+    <Content Include="Content\Images\Tiles\riverBankedNS.png" />
+    <Content Include="Content\Images\Tiles\riverBankedNW.png" />
+    <Content Include="Content\Images\Tiles\riverBankedSW.png" />
+    <Content Include="Content\Images\Tiles\riverES.png" />
+    <Content Include="Content\Images\Tiles\riverEW.png" />
+    <Content Include="Content\Images\Tiles\riverNE.png" />
+    <Content Include="Content\Images\Tiles\riverNS.png" />
+    <Content Include="Content\Images\Tiles\riverNW.png" />
+    <Content Include="Content\Images\Tiles\riverSW.png" />
+    <Content Include="Content\Images\Tiles\road.png" />
+    <Content Include="Content\Images\Tiles\roadCornerES.png" />
+    <Content Include="Content\Images\Tiles\roadCornerNE.png" />
+    <Content Include="Content\Images\Tiles\roadCornerNW.png" />
+    <Content Include="Content\Images\Tiles\roadCornerWS.png" />
+    <Content Include="Content\Images\Tiles\roadEast.png" />
+    <Content Include="Content\Images\Tiles\roadEndEast.png" />
+    <Content Include="Content\Images\Tiles\roadEndNorth.png" />
+    <Content Include="Content\Images\Tiles\roadEndSouth.png" />
+    <Content Include="Content\Images\Tiles\roadEndWest.png" />
+    <Content Include="Content\Images\Tiles\roadES.png" />
+    <Content Include="Content\Images\Tiles\roadEW.png" />
+    <Content Include="Content\Images\Tiles\roadHill2E.png" />
+    <Content Include="Content\Images\Tiles\roadHill2N.png" />
+    <Content Include="Content\Images\Tiles\roadHill2S.png" />
+    <Content Include="Content\Images\Tiles\roadHill2W.png" />
+    <Content Include="Content\Images\Tiles\roadHillE.png" />
+    <Content Include="Content\Images\Tiles\roadHillN.png" />
+    <Content Include="Content\Images\Tiles\roadHillS.png" />
+    <Content Include="Content\Images\Tiles\roadHillW.png" />
+    <Content Include="Content\Images\Tiles\roadNE.png" />
+    <Content Include="Content\Images\Tiles\roadNorth.png" />
+    <Content Include="Content\Images\Tiles\roadNS.png" />
+    <Content Include="Content\Images\Tiles\roadNW.png" />
+    <Content Include="Content\Images\Tiles\roadSW.png" />
+    <Content Include="Content\Images\Tiles\roadTEast.png" />
+    <Content Include="Content\Images\Tiles\roadTNorth.png" />
+    <Content Include="Content\Images\Tiles\roadTSouth.png" />
+    <Content Include="Content\Images\Tiles\roadTWest.png" />
+    <Content Include="Content\Images\Tiles\sone.svg" />
+    <Content Include="Content\Images\Tiles\stone-200.png" />
+    <Content Include="Content\Images\Tiles\stone.png" />
+    <Content Include="Content\Images\Tiles\stone.svg" />
+    <Content Include="Content\Images\Tiles\treeAltShort.png" />
+    <Content Include="Content\Images\Tiles\treeAltTall.png" />
+    <Content Include="Content\Images\Tiles\treeConiferShort.png" />
+    <Content Include="Content\Images\Tiles\treeConiferTall.png" />
+    <Content Include="Content\Images\Tiles\treeShort.png" />
+    <Content Include="Content\Images\Tiles\treeShort_autumn.png" />
+    <Content Include="Content\Images\Tiles\treeTall.png" />
+    <Content Include="Content\Images\Tiles\treeTall_autumn.png" />
+    <Content Include="Content\Images\Tiles\water.png" />
+    <Content Include="Content\Images\Tiles\waterBeachCornerEast.png" />
+    <Content Include="Content\Images\Tiles\waterBeachCornerNorth.png" />
+    <Content Include="Content\Images\Tiles\waterBeachCornerSouth.png" />
+    <Content Include="Content\Images\Tiles\waterBeachCornerWest.png" />
+    <Content Include="Content\Images\Tiles\waterBeachEast.png" />
+    <Content Include="Content\Images\Tiles\waterBeachNorth.png" />
+    <Content Include="Content\Images\Tiles\waterBeachSouth.png" />
+    <Content Include="Content\Images\Tiles\waterBeachWest.png" />
+    <Content Include="Content\Images\Tiles\waterCornerEast.png" />
+    <Content Include="Content\Images\Tiles\waterCornerES.png" />
+    <Content Include="Content\Images\Tiles\waterCornerNE.png" />
+    <Content Include="Content\Images\Tiles\waterCornerNorth.png" />
+    <Content Include="Content\Images\Tiles\waterCornerNW.png" />
+    <Content Include="Content\Images\Tiles\waterCornerSouth.png" />
+    <Content Include="Content\Images\Tiles\waterCornerSW.png" />
+    <Content Include="Content\Images\Tiles\waterCornerWest.png" />
+    <Content Include="Content\Images\Tiles\waterE.png" />
+    <Content Include="Content\Images\Tiles\waterEast.png" />
+    <Content Include="Content\Images\Tiles\waterES.png" />
+    <Content Include="Content\Images\Tiles\waterN.png" />
+    <Content Include="Content\Images\Tiles\waterNE.png" />
+    <Content Include="Content\Images\Tiles\waterNorth.png" />
+    <Content Include="Content\Images\Tiles\waterNW.png" />
+    <Content Include="Content\Images\Tiles\waterS.png" />
+    <Content Include="Content\Images\Tiles\waterSouth.png" />
+    <Content Include="Content\Images\Tiles\waterSW.png" />
+    <Content Include="Content\Images\Tiles\waterW.png" />
+    <Content Include="Content\Images\Tiles\waterWest.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Builders\Views\Shared\" />
+    <Folder Include="Ioc\" />
+    <Folder Include="Routes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kingdom.Builders\Kingdom.Builders.csproj">
+      <Project>{7f635349-bf08-4499-9823-84d6e044d423}</Project>
+      <Name>Kingdom.Builders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Core.Enums\Kingdom.Core.Enums.csproj">
+      <Project>{26576521-bc44-4cde-abb3-d1dd6c069075}</Project>
+      <Name>Kingdom.Core.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Core.Interfaces\Kingdom.Core.Interfaces.csproj">
+      <Project>{7c439401-c01a-45fb-9d62-c11a69ba8888}</Project>
+      <Name>Kingdom.Core.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Core.Sql\Kingdom.Core.Sql.csproj">
+      <Project>{0f5432c0-8831-4fe8-a974-5929d950e201}</Project>
+      <Name>Kingdom.Core.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Core\Kingdom.Core.csproj">
+      <Project>{37322d46-cff4-4dbd-b203-d89422d794f5}</Project>
+      <Name>Kingdom.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kingdom.Resolvers\Kingdom.Resolvers.csproj">
+      <Project>{9bd0b23b-7d45-4bed-9ea4-7ca775a86fdd}</Project>
+      <Name>Kingdom.Resolvers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tile\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\water.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\grass.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\forest.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builders\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Builders\Views\RegionBuilder\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\gold.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\stone.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\region.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\scripts\game.world.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\regions.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51419</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51133/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
