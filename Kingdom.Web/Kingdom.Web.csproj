@@ -275,6 +275,10 @@
     <Content Include="Content\Images\Tiles\stone-200.png" />
     <Content Include="Content\Images\Tiles\stone.png" />
     <Content Include="Content\Images\Tiles\stone.svg" />
+    <Content Include="Content\Images\Tiles\svg\gold-mine.svg" />
+    <Content Include="Content\Images\Tiles\svg\grass.svg" />
+    <Content Include="Content\Images\Tiles\svg\stone.svg" />
+    <Content Include="Content\Images\Tiles\svg\water.svg" />
     <Content Include="Content\Images\Tiles\treeAltShort.png" />
     <Content Include="Content\Images\Tiles\treeAltTall.png" />
     <Content Include="Content\Images\Tiles\treeConiferShort.png" />
