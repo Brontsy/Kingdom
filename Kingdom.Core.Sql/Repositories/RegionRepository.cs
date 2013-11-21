@@ -32,7 +32,7 @@ namespace Kingdom.Core.Sql.Repositories
         {
             Region region = null;
 
-            string sql = @"Select * From Regions Where Id = @RegionId;";
+            string sql = @"Select * From Kingdom.Regions Where Id = @RegionId;";
 
             using (SqlConnection conn = new SqlConnection(this._connectionString))
             {
@@ -64,7 +64,7 @@ namespace Kingdom.Core.Sql.Repositories
         {
             Region region = null;
 
-            string sql = @"Select * From Regions Where Row = @X And Col = @Y;";
+            string sql = @"Select * From Kingdom.Regions Where Row = @X And Col = @Y;";
 
             using (SqlConnection conn = new SqlConnection(this._connectionString))
             {
