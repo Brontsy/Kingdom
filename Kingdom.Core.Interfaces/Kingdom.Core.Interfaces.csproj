@@ -41,6 +41,10 @@
   <ItemGroup>
     <Compile Include="Builders\IResourceBuilder.cs" />
     <Compile Include="Builders\IRiverBuilder.cs" />
+    <Compile Include="Command\ICommandResult.cs" />
+    <Compile Include="Command\ICommandHandler.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\ICommandDispatcher.cs" />
     <Compile Include="Entities\IBuilding.cs" />
     <Compile Include="Entities\IPosition.cs" />
     <Compile Include="Entities\IRegion.cs" />

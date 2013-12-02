@@ -1,4 +1,6 @@
-﻿using Kingdom.Core.Interfaces;
+﻿using Kingdom.Core.Commands;
+using Kingdom.Core.Interfaces;
+using Kingdom.Core.Interfaces.Command;
 using Kingdom.Core.Interfaces.Entities;
 using Kingdom.Web.Models.Position;
 using Kingdom.Web.Models.Region;
@@ -13,14 +15,18 @@ namespace Kingdom.Web.Controllers
     public class RegionController : Controller
     {
         private IRegionService _regionService;
+        private ICommandDispatcher _commandDispatcher;
 
-        public RegionController(IRegionService regionService)
+        public RegionController(IRegionService regionService, ICommandDispatcher commandDispatcher)
         {
             this._regionService = regionService;
+            this._commandDispatcher = commandDispatcher;
         }
 
         public ActionResult Index(int regionId = 1, int zoomLevel = 1)
         {
+            this._commandDispatcher.Dispatch<AddBuildingCommand>(new AddBuildingCommand());
+
             IList<IRegion> regions = new List<IRegion>();// this._regionService.GetRegions();
             regions.Add(_regionService.GetRegion(regionId));
             ViewBag.ZoomLevel = zoomLevel;
