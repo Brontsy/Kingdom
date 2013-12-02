@@ -19,10 +19,11 @@ namespace Kingdom.Web.Controllers
             this._regionService = regionService;
         }
 
-        public ActionResult Index(int regionId = 1)
+        public ActionResult Index(int regionId = 1, int zoomLevel = 1)
         {
             IList<IRegion> regions = new List<IRegion>();// this._regionService.GetRegions();
             regions.Add(_regionService.GetRegion(regionId));
+            ViewBag.ZoomLevel = zoomLevel;
             //regions.Add(_regionService.GetRegion(regionId + 1));
             //regions.Add(_regionService.GetRegion(regionId + 2));
             ////regions.Add(_regionService.GetRegion(regionId + 3));
@@ -40,7 +41,7 @@ namespace Kingdom.Web.Controllers
             ////regions.Add(_regionService.GetRegion(34));
 
 
-            return View("index", regions.Select(o => new RegionViewModel(o)).ToList());//this.ConvertRegions(regions));
+            return View("index", regions.Select(o => new RegionViewModel(o, zoomLevel)).ToList());//this.ConvertRegions(regions));
         }
 
         public ActionResult Get(int x, int y)
@@ -67,16 +68,25 @@ namespace Kingdom.Web.Controllers
             return null;
         }
 
-        public ActionResult GetVisibleRegions(int screenWidth, int screenHeight, int x, int y, List<int> exclude)
+        public ActionResult GetVisibleRegions(int screenWidth, int screenHeight, int x, int y, List<int> exclude, int zoomLevel = 1)
         {
+            exclude = exclude ?? new List<int>();
             IList<IRegion> regions = this._regionService.GetVisibleRegionPositions(screenWidth, screenHeight, x, y, exclude);
 
             if (regions.Any())
             {
-                return this.PartialView("regions", regions.Select(o => new RegionViewModel(o)).ToList());
+                ViewBag.ZoomLevel = zoomLevel;
+                return this.PartialView("regions", regions.Select(o => new RegionViewModel(o, zoomLevel)).ToList());
             }
 
             return null;
+        }
+
+        public ActionResult GetVisibleRegionIds(int screenWidth, int screenHeight, int x, int y, int zoomLevel = 1)
+        {
+            IList<int> regionIds = this._regionService.GetVisibleRegionIds(screenWidth, screenHeight, x, y);
+
+            return this.Json(regionIds);
         }
     }
 }

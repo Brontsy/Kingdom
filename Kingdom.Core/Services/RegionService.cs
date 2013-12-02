@@ -51,8 +51,6 @@ namespace Kingdom.Core.Services
 
         public IList<IRegion> GetRegions(int topLeftX, int topLeftY, int topRightX, int topRightY, int bottomLeftX, int bottomLeftY, int bottomRightX, int bottomRightY, IList<int> exclude)
         {
-
-
             IPosition topLeft = new Position(topLeftX, topLeftY);
             IPosition topRight = new Position(topRightX, topRightY);
             IPosition bottomLeft = new Position(bottomLeftX, bottomLeftY);
@@ -116,8 +114,27 @@ namespace Kingdom.Core.Services
 
 
             return this._regionRepository.GetRegions(minX, maxX, minY, maxY, exclude);
+        }
 
-            return new List<IRegion>();
+
+        public IList<int> GetVisibleRegionIds(int screenWidth, int screenHeight, int x, int y)
+        {
+            I2dPosition topLeft = new IsoCoordinate(x, y).To2dPosition();
+            I2dPosition topRight = new IsoCoordinate(x + screenWidth, y).To2dPosition();
+            I2dPosition bottomLeft = new IsoCoordinate(x, y + screenHeight).To2dPosition();
+            I2dPosition bottomRight = new IsoCoordinate(x + screenWidth, y + screenHeight).To2dPosition();
+
+            IList<int> xList = new List<int>() { (int)topLeft.X / 10, (int)topRight.X / 10, (int)bottomLeft.X / 10, (int)bottomRight.X / 10 };
+            IList<int> yList = new List<int>() { (int)topLeft.Y / 10, (int)topRight.Y / 10, (int)bottomLeft.Y / 10, (int)bottomRight.Y / 10 };
+
+            int minX = xList.Min();
+            int maxX = xList.Max();
+
+            int minY = yList.Min();
+            int maxY = yList.Max();
+
+
+            return this._regionRepository.GetRegionIds(minX, maxX, minY, maxY);
         }
     }
 }

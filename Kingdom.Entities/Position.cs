@@ -26,6 +26,7 @@ namespace Kingdom.Entities
             this.Y = y < 0 ? 0 : y;
         }
     }
+    //test
 
     public class IsoCoordinate : Position, IIsoCoordinate
     {

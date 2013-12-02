@@ -20,5 +20,7 @@ namespace Kingdom.Core.Interfaces.Repositories
         IList<IRegion> GetRegions();
 
         IRegion SaveRegion(IRegion region);
+
+        IList<int> GetRegionIds(int minX, int maxX, int minY, int maxY);
     }
 }

@@ -228,8 +228,12 @@ And Id Not In ({0})
         {
             IList<Region> regions = new List<Region>();
 
-            string sql = string.Format(@"Select * From Kingdom.Regions Where Row >= @MinX And Row <= @MaxX And Col >= @MinY And Col <= @MaxY And Id Not In ({0})", string.Join(",", exclude));
+            string sql = @"Select * From Kingdom.Regions Where Row >= @MinX And Row <= @MaxX And Col >= @MinY And Col <= @MaxY";
 
+            if (exclude.Any())
+            {
+                sql += string.Format(@" And Id Not In ({0})", string.Join(",", exclude));
+            }
 
             using (SqlConnection conn = new SqlConnection(this._connectionString))
             {
@@ -264,6 +268,36 @@ And Id Not In ({0})
             }
 
             return regions.Select(o => o as IRegion).ToList();
+        }
+
+        public IList<int> GetRegionIds(int minX, int maxX, int minY, int maxY)
+        {
+            IList<int> regionIds = new List<int>();
+
+            string sql = @"Select Id From Kingdom.Regions Where Row >= @MinX And Row <= @MaxX And Col >= @MinY And Col <= @MaxY";
+
+            using (SqlConnection conn = new SqlConnection(this._connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.Add(new SqlParameter("@MinX", minX));
+                    cmd.Parameters.Add(new SqlParameter("@MaxX", maxX));
+                    cmd.Parameters.Add(new SqlParameter("@MinY", minY));
+                    cmd.Parameters.Add(new SqlParameter("@MaxY", maxY));
+
+                    using (IDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            regionIds.Add(DbUtil.GetDbValue<int>(reader, "Id"));
+                        }
+                    }
+                }
+            }
+
+            return regionIds;
         }
     }
 }

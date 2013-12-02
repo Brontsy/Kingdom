@@ -24,5 +24,9 @@ namespace Kingdom.Core.Interfaces
         IList<IRegion> GetRegions(int topLeftX, int topLeftY, int topRightX, int topRightY, int bottomLeftX, int bottomLeftY, int bottomRightX, int bottomRightY, IList<int> exclude);
 
         IList<IRegion> GetVisibleRegionPositions(int screenWidth, int screenHeight, int x, int y, IList<int> exclude);
+        
+        IList<int> GetVisibleRegionIds(int screenWidth, int screenHeight, int x, int y);
+
+        
     }
 }

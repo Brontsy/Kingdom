@@ -19,6 +19,7 @@
 	    _originalPosition: { x: 0, y: 0 },
 		_tileWidth: 100,
 		_tileHeight: 65,
+        _zoomLevel: 1,
 
 		_windowWidth: null,
         _windowHeight: null,
@@ -35,8 +36,12 @@
 			this._offset = options.offset || { x: 0, y: 0 };
 			this._originalPosition = options.offset || { x: 0, y: 0 };
 
+			this._zoomLevel = options.zoomLevel || 1;
 			this._tileWidth = options.tileWidth || 100;
 			this._tileHeight = options.tileHeight || 100;
+			
+			this._tileWidth = this._tileWidth * this._zoomLevel;
+			this._tileHeight = this._tileHeight * this._zoomLevel;
 
 			this._windowWidth = $(window).width();
 			this._windowHeight = $(window).height();
@@ -59,6 +64,25 @@
 			    $('.update-click').html('MouseX: ' + event.pageX + ' MouseY: ' + event.pageY +  ' || X: ' + testPos.x + ' Y:' + testPos.y);
 			});
 
+			$('.drag').bind('mousewheel', function (event, delta) { $this.zoom(event); });
+
+		},
+
+		zoom: function(event)
+		{
+		    $('.drag').removeClass('zoom-' + this._zoomLevel);
+
+		    this._zoomLevel += event.originalEvent.wheelDelta / 120;
+
+		    $('.drag').addClass('zoom-' + this._zoomLevel);
+
+		    $('.drag').children().remove();
+
+		    this._tileWidth = 100 * this._zoomLevel;
+		    this._tileHeight = 100 * this._zoomLevel;
+
+		    this._regionIds = new Array();
+		    this.getVisibleRegions();
 		},
 
 		getTileXY: function (isoX, isoY) {
@@ -174,26 +198,60 @@
 
 	    getVisibleRegions: function (x, y) {
 
-	    $this = this;
+	        $this = this;
 
-	    $.ajax({
-	        url: '/region/get/visible',
-	        contentType: 'application/json',
-	        data: JSON.stringify({ screenWidth: $this._windowWidth, screenHeight: $this._windowHeight, x: this._offset.x, y: this._offset.y, exclude: $this._regionIds }),
-	        method: 'POST',
-	        success: function (response) {
-	            $(response).appendTo($this._container);
+	        $.ajax({
+	            url: '/region/get/visible',
+	            contentType: 'application/json',
+	            data: JSON.stringify({ screenWidth: $this._windowWidth, screenHeight: $this._windowHeight, x: this._offset.x, y: this._offset.y, exclude: $this._regionIds, zoomLevel: $this._zoomLevel }),
+	            method: 'POST',
+	            success: function (response) {
+	                $(response).appendTo($this._container);
 
-	            $('.region > div').on('click', function (event) {
+	                $('.region > div').on('click', function (event) {
 
-	                var testPos = $this.getTileXY(event.pageX, event.pageY);
-	                $('.update-click').html('MouseX: ' + event.pageX + ' MouseY: ' + event.pageY + ' || X: ' + testPos.x + ' Y:' + testPos.y);
-	            });
-	            $.each($('.region'), function (index, element) {
-	                $this._regionIds.push($(this).data('region-id'));
-	            });
+	                    var testPos = $this.getTileXY(event.pageX, event.pageY);
+	                    $('.update-click').html('MouseX: ' + event.pageX + ' MouseY: ' + event.pageY + ' || X: ' + testPos.x + ' Y:' + testPos.y);
+	                });
+	                $.each($('.region'), function (index, element) {
+	                    $this._regionIds.push($(this).data('region-id'));
+	                
+	                });
 
-	        }
-	    });
-	}
-	};
+	                $this.removeNonVisibleRegions();
+	            }
+	        });
+	    },
+
+	    removeNonVisibleRegions: function()
+	    {
+	        var ids;
+	        $.ajax({
+	            url: '/region/get/visible/ids',
+	            contentType: 'application/json',
+	            dataType: "json",
+	            data: JSON.stringify({ screenWidth: $this._windowWidth, screenHeight: $this._windowHeight, x: this._offset.x, y: this._offset.y }),
+	            method: 'POST',
+	            success: function (response) {
+	                
+	                ids = response;
+
+	                $.each($('.region'), function (index, element) {
+
+	                    var inArray = jQuery.inArray(parseInt($(element).data('region-id')), ids);
+
+	                    if (inArray == -1) {
+	                        $(element).remove();
+	                    }
+	                });
+
+	                $this._regionIds = new Array();
+	                $.each($('.region'), function (index, element) {
+	                    $this._regionIds.push($(this).data('region-id'));
+	                });
+
+	                $('.updatetl').html($('.region').length);
+	            }
+	        });
+        }
+};

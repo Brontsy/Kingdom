@@ -1,0 +1,44 @@
+﻿
+
+
+@tileWidth: 100px;
+@tileHeight: 100px;
+
+.zoom-1 {
+    .tile 
+    { 
+        .water { background: url(/Content/Images/Tiles/svg/water.svg) no-repeat; width: @tileWidth; height: (@tileHeight * 0.65); background-size: 100%; }
+        .grass { background: url(/Content/Images/Tiles/svg/grass.svg) no-repeat; width: @tileWidth; height: (@tileHeight * 0.65); background-size: 100%; }
+        .stone { background: url(/Content/Images/Tiles/svg/stone.svg) no-repeat; width: @tileWidth; height: (@tileHeight * 0.65); background-size: 100%; }
+        .gold { background: url(/Content/Images/Tiles/svg/gold-mine.svg) no-repeat; width: @tileWidth; height: (@tileHeight * 0.65); background-size: 100%; }
+    }
+
+}
+
+.zoom-2 {
+    .tile 
+    { 
+        .water { background: url(/Content/Images/Tiles/svg/water.svg) no-repeat; width: (@tileWidth * 2); height: (@tileHeight * 1.3); background-size: 100%; }
+        .grass { background: url(/Content/Images/Tiles/svg/grass.svg) no-repeat; width: (@tileWidth * 2); height: (@tileHeight * 1.3); background-size: 100%; }
+        .stone { background: url(/Content/Images/Tiles/svg/stone.svg) no-repeat; width: (@tileWidth * 2); height: (@tileHeight * 1.3); background-size: 100%; }
+        .gold { background: url(/Content/Images/Tiles/svg/gold-mine.svg) no-repeat; width: (@tileWidth * 2); height: (@tileHeight * 1.3); background-size: 100%; }
+    }
+
+}
+/*
+    .tile .grass { background: url(/Content/Images/Tiles/svg/grass.svg) no-repeat; width: @tileWidthpx; height: @(TileConstants.TileHeight * 0.65)px; background-size: 100%; }
+    .tile .gold { background: url(/Content/Images/Tiles/svg/gold-mine.svg) no-repeat; width: @tileWidthpx; height: @(TileConstants.TileHeight * 0.65)px; background-size: 100%; }
+    .tile .stone { background: url(/Content/Images/Tiles/svg/stone.svg) no-repeat; width: @tileWidthpx; height: @(TileConstants.TileHeight * 0.65)px; background-size: 100%; }
+    .tile .tree01 { background: url(/Content/Images/Tiles/svg/tree01.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.2)px 0px 0px @(TileConstants.TileWidth * 0.7)px; position: absolute; background-size: 100%; }
+    .tile .tree02 { background: url(/Content/Images/Tiles/svg/tree01.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.35)px 0px 0px @(TileConstants.TileWidth * 0.37)px; position: absolute; background-size: 100%; }
+    .tile .tree03 { background: url(/Content/Images/Tiles/svg/tree01.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.2)px 0px 0px @(TileConstants.TileWidth * 0.18)px; position: absolute; background-size: 100%; }
+    .tile .tree04 { background: url(/Content/Images/Tiles/svg/tree02.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.2)px 0px 0px @(TileConstants.TileWidth * 0.22)px; position: absolute; background-size: 100%; }
+    .tile .tree05 { background: url(/Content/Images/Tiles/svg/tree02.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.05)px 0px 0px @(TileConstants.TileWidth * 0.5)px; position: absolute; background-size: 100%; }
+    .tile .tree06 { background: url(/Content/Images/Tiles/svg/tree02.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.2)px 0px 0px @(TileConstants.TileWidth * 0.6)px; position: absolute; background-size: 100%; }
+    .tile .tree07 { background: url(/Content/Images/Tiles/svg/tree03.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.06)px 0px 0px @(TileConstants.TileWidth * 0.32)px; position: absolute; background-size: 100%; }
+    .tile .tree08 { background: url(/Content/Images/Tiles/svg/tree03.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.18)px 0px 0px @(TileConstants.TileWidth * 0.22)px; z-index: 10; position: absolute; background-size: 100%; }
+    .tile .tree09 { background: url(/Content/Images/Tiles/svg/tree03.svg) no-repeat; width: @(TileConstants.TileWidth * 0.2)px; height: @(TileConstants.TileHeight * 0.5)px; margin: -@(TileConstants.TileHeight * 0.2)px 0px 0px @(TileConstants.TileWidth * 0.12)px; position: absolute; background-size: 100%; }
+    .tile .tree10 { background: url(/Content/Images/Tiles/coniferAltShort.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 12px; position: absolute;  }
+    .tile .tree11 { background: url(/Content/Images/Tiles/coniferAltShort.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 12px; position: absolute;  }
+    .tile .tree12 { background: url(/Content/Images/Tiles/coniferAltShort.png) no-repeat; width: 19px; height: 48px; margin: -20px 0px 0px 12px; position: absolute;  }
+    */

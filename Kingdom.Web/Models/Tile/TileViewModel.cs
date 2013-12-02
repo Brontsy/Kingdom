@@ -22,7 +22,7 @@ namespace Kingdom.Web.Models.Tile
 
         public string Type { get; set; }
 
-        public TileViewModel(IRegion region, ITile tile)
+        public TileViewModel(IRegion region, ITile tile, int zoomLevel = 1)
         {
             this.Id = tile.Id;
             this.X = tile.Position.X;
@@ -30,8 +30,8 @@ namespace Kingdom.Web.Models.Tile
 
             IIsoCoordinate isoCoordinate = tile.Position.ToIsoCoordinate(region);
 
-            this.IsoX = isoCoordinate.X;
-            this.IsoY = isoCoordinate.Y;
+            this.IsoX = isoCoordinate.X * zoomLevel;
+            this.IsoY = isoCoordinate.Y * zoomLevel;
 
             this.ZIndex = 1000 + this.X + this.Y;
 

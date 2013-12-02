@@ -20,7 +20,7 @@ namespace Kingdom.Web.Models.Region
 
         public IList<PositionViewModel> Neighbours { get; set; }
 
-        public RegionViewModel(IRegion region)
+        public RegionViewModel(IRegion region, int zoomLevel = 1)
         {
             this.Id = region.Id;
             this.X = region.Position.X;
@@ -31,7 +31,7 @@ namespace Kingdom.Web.Models.Region
             {
                 for (int j = 0; j < region.Tiles.GetLength(1); j++)
                 {
-                    this.Tiles[i, j] = new TileViewModel(region, region.Tiles[i, j]);
+                    this.Tiles[i, j] = new TileViewModel(region, region.Tiles[i, j], zoomLevel);
                 }
             }
 

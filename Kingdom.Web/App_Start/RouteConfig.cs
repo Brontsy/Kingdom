@@ -18,6 +18,7 @@ namespace Kingdom.Web
             routes.MapRoute(name: "GetRegion", url: "region/get/{x}-{y}", defaults: new { controller = "Region", action = "Get" });
             routes.MapRoute(name: "GetRegionRange", url: "region/get/range", defaults: new { controller = "Region", action = "GetRange" });
             routes.MapRoute(name: "GetVisibleRegions", url: "region/get/visible", defaults: new { controller = "Region", action = "GetVisibleRegions" });
+            routes.MapRoute(name: "GetVisibleRegionIds", url: "region/get/visible/ids", defaults: new { controller = "Region", action = "GetVisibleRegionIds" });
 
             routes.MapRoute(
                 name: "Default",
